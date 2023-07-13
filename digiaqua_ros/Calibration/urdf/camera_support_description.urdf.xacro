@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<robot name="camerasupport" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find digiaqua_ros)/urdf/sensors_macro.urdf.xacro"/>
+
+    <material name="green">
+        <color rgba="0 1 0 0.5"/>
+    </material>
+
+    <material name="blue">
+        <color rgba="0 0.8 0.8 0.5"/>
+    </material>
+
+    <link name="estante">
+        <visual>
+            <origin xyz="0 0 0.7925" rpy="0 0 0" />
+            <geometry>
+                <box size="0.5 0.5 1.585"/>
+            </geometry>
+            <material name="green"/>
+        </visual>
+    </link>
+<!--                                           0.047 mm-->
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size="0.01 0.01 0.02"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="estante_to_base_link" type="fixed">
+        <axis xyz="0 0 0"/>
+        <limit effort="0.0" lower="0.0" upper="0.0" velocity="0.0"/>
+        <origin rpy="0 0 0" xyz="0.06 0.2445 1.595"/>
+        <parent link="estante"/>
+        <child link="base_link"/>
+    </joint>
+
+    <link name="link1">
+        <visual>
+            <geometry>
+                <box size="0.01 0.04 0.01"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="base_link_to_link1" type="fixed">
+        <axis xyz="0 0 0"/>
+        <limit effort="0" lower="0" upper="0" velocity="0"/>
+        <origin rpy="0 0 0" xyz="0 0.02 0.01"/>
+        <parent link="base_link"/>
+        <child link="link1"/>
+    </joint>
+
+    <link name="link2_camera_left">
+        <visual>
+            <geometry>
+                <box size="0.01 0.01 0.047"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="link1_to_link2" type="fixed">
+        <axis xyz="0 0 0"/>
+        <limit effort="0" lower="0" upper="0" velocity="0"/>
+<!--        <origin rpy="0 0 0" xyz="0 0.02607 -0.023835"/>-->
+        <origin rpy="0 0 0" xyz="0 0.02 -0.0235"/>
+        <parent link="link1"/>
+        <child link="link2_camera_left"/>
+    </joint>
+
+    <link name="base_link_r">
+        <visual>
+            <geometry>
+                <box size="0.01 0.01 0.02"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="estante_to_base_link_r" type="fixed">
+        <axis xyz="0 0 0"/>
+        <limit effort="0.0" lower="0.0" upper="0.0" velocity="0.0"/>
+        <origin rpy="0 0 0" xyz="-0.06 0.2445 1.595"/>
+        <parent link="estante"/>
+        <child link="base_link_r"/>
+    </joint>
+
+    <link name="link1_r">
+        <visual>
+            <geometry>
+                <box size="0.01 0.04 0.01"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="base_link_to_link1_r" type="fixed">
+        <axis xyz="0 0 0"/>
+        <limit effort="0" lower="0" upper="0" velocity="0"/>
+        <origin rpy="0 0 0" xyz="0 0.02 0.01"/>
+        <parent link="base_link_r"/>
+        <child link="link1_r"/>
+    </joint>
+
+    <link name="link2_camera_right">
+        <visual>
+            <geometry>
+                <box size="0.01 0.01 0.047"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="link1_r_to_link2_r" type="fixed">
+        <axis xyz="0 0 0"/>
+        <limit effort="0" lower="0" upper="0" velocity="0"/>
+        <origin rpy="0 0 0" xyz="0 0.02 -0.0235"/>
+        <parent link="link1_r"/>
+        <child link="link2_camera_right"/>
+    </joint>
+
+    <xacro:usb_cam name="camera_left" x="0" y="0" z="-0.035" roll="0" pitch="0" yaw="0"/>
+    <xacro:usb_cam name="camera_right" x="0" y="0" z="-0.035" roll="0" pitch="0" yaw="0"/>
+
+</robot>
+
+<!--entre lentes: 110 mm-->
+<!--lente ao eixo: 13 mm-->
+<!--lente ao base link: 67 mm-->
+<!--lente ao chao: 1.545 m-->

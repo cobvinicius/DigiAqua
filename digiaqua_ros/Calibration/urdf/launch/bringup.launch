@@ -1,0 +1,13 @@
+<launch>
+    <include file="$(find digiaqua_ros)/Calibration/urdf/launch/camera_support.launch"/>
+    <include file="$(find digiaqua_ros)/Calibration/urdf/launch/rgb.launch">
+            <arg name="frame_id" value="camera_left_rgb_optical_frame"/>
+            <arg name="camera_id" value="4"/>
+    </include>
+    <include file="$(find digiaqua_ros)/Calibration/urdf/launch/rgb.launch">
+            <arg name="frame_id" value="camera_right_rgb_optical_frame"/>
+            <arg name="camera_id" value="2"/>
+    </include>
+    <node name="rviz" pkg="rviz" type="rviz"
+          args="--display-config $(find digiaqua_ros)/config/rviz.rviz" required="true"/>
+</launch>
