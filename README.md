@@ -1,2 +1,2 @@
-# DigiAqua2
+# DigiAqua
 Digitalizing Aquaculture
