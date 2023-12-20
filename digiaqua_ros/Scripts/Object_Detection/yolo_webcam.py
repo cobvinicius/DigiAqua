@@ -18,9 +18,11 @@ def main():
     # results = model("https://ultralytics.com/images/bus.jpg")  # predict on an image
     # path = model.export(format="onnx")  # export the model to ONNX format
 
-    results = model.predict(source="0", show=True)
+    results = model.predict(source="2", show=True)
+    # print(results)
 
-    print(results)
+    results2 = model.predict(source="4", show=True)
+    # print(results2)
 
 if __name__ == '__main__':
     main()

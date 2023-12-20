@@ -6,7 +6,9 @@ import numpy as np
 def main():
 
     # Carregar Imagem
-    rgbImage = cv2.imread('/7-1.tif')
+    # rgbImage = cv2.imread('/7-1.tif')
+    rgbImage = cv2.imread('/home/vinicius/catkin_ws/src/DigiAqua/FastSAM/images/oysters.jpg')
+
 
     # Converte a imagem para escala de cinza
     grayImage = cv2.cvtColor(rgbImage, cv2.COLOR_BGR2GRAY)
